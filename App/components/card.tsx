@@ -1,26 +1,61 @@
 /* eslint-disable prettier/prettier */
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
+import { State, TapGestureHandler, TouchableOpacity } from 'react-native-gesture-handler';
+import Animated from 'react-native-reanimated';
+// import { Value } from 'react-native-reanimated';
 
-const Card = ({district, title, address, price, image}) => (
-  <View style={styles.component}>
-    <View>
-      <Image
-        style={styles.image}
-        source={image}
-      />
-    </View>
-    <View style={styles.bottomSection}>
+// const animation = new Value(0);
+interface CardProps {
+  district: String,
+  title: String,
+  address: String,
+  price: String,
+  image: any
+}
 
-      <View style={styles.detailView}>
-        <Text style={styles.district}>{district}</Text>
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.address}>{address}</Text>
-        <Text style={styles.price}>{price}</Text>
+
+
+
+
+const Card = ({district, title, address, price, image}: CardProps) => {
+  const [scale, setScale] = useState(1);
+
+  const onTap = () => {
+    if (scale === 1){
+      setScale(2);
+    }
+    else {
+      setScale(1);
+    }
+  };
+
+  return (
+    <TouchableOpacity
+      onPress={onTap}
+      >
+      <View style={[styles.component, {
+        transform: [{scaleX: scale}],
+      }]}>
+        <View>
+          <Image
+            style={styles.image}
+            source={image}
+          />
+        </View>
+        <View style={styles.bottomSection}>
+
+          <View style={styles.detailView}>
+            <Text style={styles.district}>{district}</Text>
+            <Text style={styles.title}>{title}</Text>
+            <Text style={styles.address}>{address}</Text>
+            <Text style={styles.price}>{price}</Text>
+          </View>
+        </View>
       </View>
-    </View>
-  </View>
-);
+    </TouchableOpacity>
+  );
+};
 
 const styles = StyleSheet.create({
   component:{
@@ -37,7 +72,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.36,
     shadowRadius: 6.68,
 
-    marginHorizontal: 16
+    marginHorizontal: 16,
   },
   bottomSection: {
     padding: 16,
@@ -88,7 +123,7 @@ const styles = StyleSheet.create({
     letterSpacing: 0.01,
     color: '#b68401',
     alignSelf: 'stretch',
-    marginTop: 8
+    marginTop: 8,
   },
   price: {
     fontSize: 14,
@@ -97,8 +132,8 @@ const styles = StyleSheet.create({
     letterSpacing: 0.01,
     color: '#111214',
     alignSelf: 'stretch',
-    marginTop: 12
-  }
+    marginTop: 12,
+  },
 });
 
 export default Card;

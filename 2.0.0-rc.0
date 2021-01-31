@@ -1,0 +1,8 @@
++ react-native-reanimated@1.13.2
+removed 4 packages, updated 1 package and audited 1132 packages in 12.558s
+
+56 packages are looking for funding
+  run `npm fund` for details
+
+found 4 low severity vulnerabilities
+  run `npm audit fix` to fix them, or `npm audit` for details

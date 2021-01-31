@@ -34,13 +34,13 @@ const apartmentData = [
   },
 ];
 
-
 const CardCarousel = () => (
   <FlatList
     data={apartmentData}
-    renderItem={({ item, index, separators }) => (
+    renderItem={({ item}) => (
       <Card {...item}/>
     )}
+    keyExtractor={item => item.title}
     horizontal={true}
     style={styles.container}
     />
